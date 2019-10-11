@@ -1,0 +1,22 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="ColorNotes_Grouping" annotations="JDK" >
+
+    <groups>
+        <run>
+            <include name="Creation"/>
+            <include name="Primitive"/>
+        </run>
+    </groups>
+
+        <test name="NoteCreation">
+                <classes>
+                    <class name="tests.CreateNewNoteScenarios"/>
+                </classes>
+        </test>
+    <test name="Primitive">
+        <classes>
+            <class name="tests.FirstTest"/>
+            <class name="tests.SecondTest"/>
+        </classes>
+    </test>
+</suite>

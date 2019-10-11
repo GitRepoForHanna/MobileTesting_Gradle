@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+}
+
+group 'Gradle'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    appiumVersion="7.0.0"
+    log4JVersion="1.2.17"
+    testNGVersion="6.14.3"
+    springVersion="5.1.5.RELEASE"
+    seleniumVersion="3.141.59"
+}
+
+dependencies {
+    compile(
+            [group: "io.appium", name: "java-client", version:"$appiumVersion"],
+            [group: "log4j", name: "log4j", version: "$log4JVersion"],
+            [group: 'org.testng', name: 'testng', version: "$testNGVersion"],
+            [group: "org.springframework", name: "spring-core", version: "$springVersion"],
+            [group: "org.springframework", name: "spring-context", version: "$springVersion"],
+            [group: "org.springframework", name: "spring-test", version: "$springVersion"],
+            [group: "org.seleniumhq.selenium", name: "selenium-java", version: "$seleniumVersion"]
+    )
+}
+
+test {
+    useTestNG(){
+       useDefaultListeners = true
+//        includeGroups 'Creation'
+//        excludeGroups 'Primitive'
+        suites 'src/test/resources/TestGrouping.xml'
+    }
+    testLogging {
+        events "PASSED", "STARTED", "FAILED", "SKIPPED"
+        exceptionFormat "full"
+    }
+//    exclude (
+//            "**/SecondTest.class"
+//    )
+}
